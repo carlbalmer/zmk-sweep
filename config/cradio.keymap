@@ -9,6 +9,7 @@
 // Home row mods macro
 #define HRML(k1,k2,k3) &ht LCTRL k1  &ht LGUI k2  &ht LALT k3
 #define HRMR(k1,k2,k3) &ht RALT k1  &ht RGUI k2  &ht RCTRL k3
+#define DK(k1) &dkht k1 k1
 
 #define WIN 0
 #define RIG 1
@@ -16,6 +17,16 @@
 #define TRI 3
 
 / {
+    macros {
+        w_spc: with_space_macro {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <30>;
+            tap-ms = <30>;
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>, <&kp SPACE>;
+        };
+    };
+
     behaviors {
         ht: hold_tap {
             label = "hold_tap";
@@ -27,6 +38,17 @@
             global-quick-tap;
             bindings = <&kp>, <&kp>;
         };
+
+        dkht: dead_key_hold_tap {
+            label = "dead_key_space";
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            global-quick-tap;
+            bindings = <&kp>, <&w_spc>;
+        };
     };
 
     conditional_layers {
@@ -34,16 +56,6 @@
         tri_layer {
             if-layers = <RIG LEF>;
             then-layer = <TRI>;
-        };
-    };
-
-    macros {
-        ws: with_space_macro {
-            compatible = "zmk,behavior-macro-one-param";
-            wait-ms = <30>;
-            tap-ms = <30>;
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>, <&kp SPACE>;
         };
     };
 
@@ -86,14 +98,14 @@
         left_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ !        │ @        │ #        │ $        │ %        │   │ ^        │ &        │ *        │ (        │ )        │
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT     &ws CARET   &kp AMPS  &kp ASTRK  &kp LPAR   &kp RPAR 
+        //│ !        │ @        │ #        │ $        │ %        │   │ ^ (^+)   │ &        │ *        │ (        │ )        │
+            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT     DK(CARET)   &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ ?        │ │        │ _        │ +        │ ~        │   │          │ :        │ "        │ {        │ }        │
-            &kp QMARK  &kp PIPE   &kp UNDER  &kp PLUS   &ws TILDE      &none      &kp COLON  &ws DQT    &kp LBRC   &kp RBRC 
+        //│ ?        │ │        │ _        │ +        │ ~ (~+)   │   │          │ :        │ " ("+)   │ {        │ }        │
+            &kp QMARK  &kp PIPE   &kp UNDER  &kp PLUS   DK(TILDE)      &none      &kp COLON  DK(DQT)    &kp LBRC   &kp RBRC 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ /        │ \        │ -        │ =        │ `        │   │          │ ;        │ '        │ [        │ ]        │
-            &kp FSLH   &kp BSLH   &kp MINUS  &kp EQUAL  &ws GRAVE      &none      &kp SEMI   &ws SQT    &kp LBKT   &kp RBKT 
+        //│ /        │ \        │ -        │ =        │ ` (`+)   │   │          │ ;        │ ' ('+)   │ [        │ ]        │
+            &kp FSLH   &kp BSLH   &kp MINUS  &kp EQUAL  DK(GRAVE)      &none      &kp SEMI   DK(SQT)    &kp LBKT   &kp RBKT 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &none          &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
