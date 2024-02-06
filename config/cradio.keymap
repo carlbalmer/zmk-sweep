@@ -77,7 +77,7 @@
         //│ Z        │ X        │ C        │ V        │ B        │   │ N        │ M        │ , (<)    │ . (>)    │ ENTER    │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp ENTER
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &lt LEF TAB  &kp LSHIFT     &kp SPACE  &lt RIG TAB
+                                           &lt LEF TAB  &kp LSHIFT     &kp SPACE  &lt RIG ESC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -94,7 +94,7 @@
         //│          │          │          │          │          │   │          │ HOME     │ PAGE DN  │ PAGE UP  │ END      │
             &none      &none      &none      &none      &none          &none      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &kp ESC        &trans     &trans
+                                             &trans     &trans      &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -111,7 +111,7 @@
         //│ /        │ \        │ -        │ =        │ ` (`+)   │   │          │ ;        │ ' ('+)   │ [        │ ]        │
             &kp FSLH   &kp BSLH   &kp MINUS  &kp EQUAL  DK(GRAVE)      &none      &kp SEMI   DK(SQT)    &kp LBKT   &kp RBKT 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &none          &trans     &trans
+                                             &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -128,7 +128,7 @@
         //│ F9       │ F10      │ F11      │ F12       │ CLEAR BT   │   │ PROFILE 4  │ DEC BRIGHT │          | VOL DOWN  │ PREVSONG │
             &kp F9     &kp F10    &kp F11    &kp F12     &bt BT_CLR      &bt BT_SEL 4  &kp C_BRI_DEC &none    &kp C_VOL_DN &kp C_PREV
         //╰──────────┴──────────┴──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┴───────────┴──────────╯
-                                             &trans      &none            &trans       &trans
+                                             &trans      &trans           &trans       &trans
         //                                 ╰───────────┴────────────╯   ╰────────────┴────────────╯
             >;
         };
